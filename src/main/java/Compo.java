@@ -8,11 +8,15 @@ import javax.persistence.Table;
 @Entity @Table(name="COMPO")
 public class Compo {
 	@Id
+	@Column(name="ID")
 	private Integer id;
+	
 	@Column(name="ID_LIV")
 	private Integer id_livre;
+	
 	@Column(name="ID_EMP")
 	private Integer id_emp;
+	
 	public Integer getId() {
 		return id;
 	}

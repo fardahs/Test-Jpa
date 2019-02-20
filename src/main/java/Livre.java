@@ -1,13 +1,17 @@
 package main.java;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity @Table(name="livre") 
 public class Livre{
+	
 	@Id
+	@Column(name="ID")
 	private Integer id;
 	
 	@Column(name="TITRE")
@@ -15,6 +19,10 @@ public class Livre{
 	
 	@Column(name="AUTEUR")
 	private String auteur;
+	
+	// Relation livre - emprunts
+	@ManyToMany(mappedBy="livre")
+	private List<Emprunt> emprunts;
 	
 	// Getters et Setters
 	public Integer getId() {
@@ -39,6 +47,14 @@ public class Livre{
 
 	public void setAuteur(String auteur) {
 		this.auteur = auteur;
+	}
+	
+	public List<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	public void setEmprunts(List<Emprunt> emprunts) {
+		this.emprunts = emprunts;
 	}
 
 }
