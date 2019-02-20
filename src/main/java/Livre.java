@@ -6,20 +6,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity @Table(name="livre") 
-
 public class Livre{
 	@Id
 	private Integer id;
 	
-
 	@Column(name="TITRE")
 	private String titre;
 	
 	@Column(name="AUTEUR")
 	private String auteur;
 	
-	
-
+	// Getters et Setters
 	public Integer getId() {
 		return id;
 	}
