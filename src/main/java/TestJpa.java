@@ -40,6 +40,7 @@ public class TestJpa {
 			}		
 		}
 		
+		
 		//Extrait tous les emprunts des clients.	
 		TypedQuery<Client> query3 = em.createQuery("select client from Client client", Client.class);
 		List<Client> client = query3.getResultList();
@@ -52,6 +53,7 @@ public class TestJpa {
 				System.out.println("Le client " + c.getNom() +" "+ c.getPrenom() + " a emprunté des livres le " + e.getDate_debut().format(formatter));
 			}
 		}
+				
 		
 		
 	}
