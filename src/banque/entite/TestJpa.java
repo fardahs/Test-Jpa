@@ -71,7 +71,8 @@ public class TestJpa {
 		virement.setMontant(254.36);
 		virement.setMotif("Aide 2");
 		
-		
+		//List<Operation> listeOperation = new ArrayList<>();
+		//listeOperation.add(virement);
 		//operation.setCompte(compte);
 		
 		AssuranceVie assurenceVie = new AssuranceVie();
@@ -80,6 +81,7 @@ public class TestJpa {
 		assurenceVie.setSolde(587.4);
 		assurenceVie.setTaux(1.5);
 		assurenceVie.setDateFin(LocalDate.now());
+		//assurenceVie.setListOperation(listeOperation);
 		
 		listeCompte.add(assurenceVie);
 		listeCompte.add(livretA);
