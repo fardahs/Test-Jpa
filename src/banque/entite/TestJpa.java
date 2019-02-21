@@ -1,5 +1,6 @@
 package banque.entite;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,15 @@ import javax.persistence.Persistence;
 public class TestJpa {
 
 	public static void main(String[] args) {
+		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("banque");
 		EntityManager em = entityManagerFactory.createEntityManager();
 		
 		EntityTransaction et = em.getTransaction();
 		et.begin();
+		
+		//Liste de clients
+		List<Client> listClient = new ArrayList<Client>();
 		
 		Adresse adresse = new Adresse();
 		adresse.setCodePostal(35000);
@@ -32,8 +37,7 @@ public class TestJpa {
 		client.setPrenom("Pierre");
 		client.setBanque(banque);
 		client.setAdresse(adresse);
-		
-		List<Client> listClient = new ArrayList<Client>();
+		//Ajout d'un client dans la liste	
 		listClient.add(client);
 		
 		banque.setClient(listClient);
@@ -47,13 +51,39 @@ public class TestJpa {
 		compte.setClients(listClient);
 		compte.setNumero("02598745");
 		compte.setSolde(12563.14);
+
+		
+		/*************** TP 5 avec heritage************/
+		LivretA livretA = new LivretA();
+		livretA.setTaux(15.2);
+		livretA.setClients(listClient);
+		livretA.setSolde(14.2);
+		livretA.setNumero("25487");
+		
+		Virement virement = new Virement();
+		virement.setBeneficiare("Jacques");
+		virement.setDate(LocalDateTime.now());
+		virement.setCompte(compte);
+		virement.setMontant(254.36);
+		virement.setMotif("Aide");
 		
 		operation.setCompte(compte);
 		
+		AssuranceVie assurenceVie = new AssuranceVie();
+		assurenceVie.setClients(listClient);
+		assurenceVie.setNumero("25487693");
+		assurenceVie.setSolde(587.4);
+		assurenceVie.setTaux(1.5);
+		assurenceVie.setDateFin(LocalDate.now());
+		
+		//Persitence des entités
 		em.persist(banque);
 		em.persist(operation);
 		em.persist(compte);
 		em.persist(client);
+		em.persist(livretA);
+		em.persist(virement);
+		em.persist(assurenceVie);
 		
 		et.commit();
 	}
